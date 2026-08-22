@@ -24,7 +24,7 @@
     </div>
   </nav>
 
-  <main class="case-page">
+  <main class="case-page case-page--governance">
     <header class="container case-hero">
       <a class="case-back" href="../index.html#work">← Back to Work</a>
       <div class="case-eyebrow" aria-label="Case study categories">
@@ -80,34 +80,74 @@
     <section class="container case-section">
       <div class="case-section__head">
         <div class="case-section__intro">
-          <p class="section-number">03. Portfolio-Safe Project Snapshot</p>
-          <h2>A sanitized snapshot shows how different workstreams are managed without exposing vendors, locations, or financial values.</h2>
+          <p class="section-number">03. Portfolio-Safe Governance Board</p>
+          <h2>A sanitized board separates what is moving, what is blocked, and what needs management attention.</h2>
         </div>
         <p>The examples below preserve the project-control logic while removing organization-sensitive names, quotations, payment values, and identifying project details.</p>
       </div>
 
-      <div class="ops-demo" aria-label="Sanitized construction project control snapshot">
-        <div class="ops-demo__header">
+      <div class="gov-demo" aria-label="Sanitized governance board for active construction work">
+        <div class="gov-demo__header">
           <div>
-            <strong>Project Control Snapshot</strong>
-            <span>Sanitized active-work examples</span>
+            <strong>Governance Board</strong>
+            <span>Sanitized active-project view</span>
           </div>
-          <div class="ops-demo__summary">
-            <span><b>Multi</b> Workstream</span>
-            <span><b>Active</b> Monitoring</span>
-          </div>
+          <p>One management view for workstreams, dependencies, decisions, and follow-up.</p>
         </div>
-        <div class="ops-table" role="table" aria-label="Sanitized project control table">
-          <div class="ops-table__row ops-table__head" role="row">
-            <span>Workstream</span><span>Stage</span><span>Dependency</span><span>Control</span><span>Status</span>
-          </div>
-          <div class="ops-table__row" role="row"><span data-label="Workstream">Interior fit-out</span><span data-label="Stage">Installation</span><span data-label="Dependency">Finish sequencing</span><span data-label="Control">Re-sequence work</span><span data-label="Status" class="ops-status ops-status--ready">In progress</span></div>
-          <div class="ops-table__row" role="row"><span data-label="Workstream">Electrical</span><span data-label="Stage">Partial install</span><span data-label="Dependency">Ceiling readiness</span><span data-label="Control">Hold dependent scope</span><span data-label="Status" class="ops-status ops-status--review">Waiting</span></div>
-          <div class="ops-table__row" role="row"><span data-label="Workstream">External works</span><span data-label="Stage">Measurement</span><span data-label="Dependency">Vendor site check</span><span data-label="Control">Follow-up required</span><span data-label="Status" class="ops-status ops-status--review">Open</span></div>
-          <div class="ops-table__row" role="row"><span data-label="Workstream">Structural package</span><span data-label="Stage">Commercial review</span><span data-label="Dependency">Quote comparison</span><span data-label="Control">Negotiate &amp; compare</span><span data-label="Status" class="ops-status ops-status--ready">Reviewing</span></div>
+
+        <div class="gov-board">
+          <section class="gov-column" aria-labelledby="gov-live-heading">
+            <div class="gov-column__head">
+              <span>01</span>
+              <h3 id="gov-live-heading">Live Workstreams</h3>
+            </div>
+            <article class="gov-card">
+              <div class="gov-card__top"><strong>Interior fit-out</strong><span class="gov-status gov-status--active">In progress</span></div>
+              <p>Installation sequencing remains under active monitoring.</p>
+            </article>
+            <article class="gov-card">
+              <div class="gov-card__top"><strong>Electrical</strong><span class="gov-status gov-status--waiting">Waiting</span></div>
+              <p>Partial installation is visible while dependent scope remains on hold.</p>
+            </article>
+          </section>
+
+          <section class="gov-column" aria-labelledby="gov-dep-heading">
+            <div class="gov-column__head">
+              <span>02</span>
+              <h3 id="gov-dep-heading">Dependencies &amp; Blockers</h3>
+            </div>
+            <article class="gov-card">
+              <strong>Finish sequencing</strong>
+              <p>Re-sequence work when another finish should be completed first.</p>
+            </article>
+            <article class="gov-card">
+              <strong>Ceiling readiness</strong>
+              <p>Keep dependent work visibly waiting until the preceding activity is ready.</p>
+            </article>
+          </section>
+
+          <section class="gov-column gov-column--decision" aria-labelledby="gov-decision-heading">
+            <div class="gov-column__head">
+              <span>03</span>
+              <h3 id="gov-decision-heading">Decisions &amp; Payment Control</h3>
+            </div>
+            <article class="gov-card">
+              <strong>Structural package</strong>
+              <p>Keep commercial review open while scope, quotations, and options are compared.</p>
+            </article>
+            <article class="gov-card">
+              <strong>Staged payment</strong>
+              <p>Monitor payment progress alongside delivery and execution milestones.</p>
+            </article>
+          </section>
         </div>
-        <div class="ops-flow">
-          <span>Field update</span><span>Project status</span><span>Dependency</span><span>Decision</span><span>Action</span><span>Follow-up</span>
+
+        <div class="gov-flow" aria-label="Governance follow-up cycle">
+          <span>Capture update</span>
+          <span>Update status</span>
+          <span>Surface dependency</span>
+          <span>Review decision</span>
+          <span>Follow through</span>
         </div>
       </div>
     </section>
@@ -128,14 +168,27 @@
       </div>
     </section>
 
-    <section class="container case-section case-two-col">
-      <div class="case-section__intro">
-        <p class="section-number">05. Governance Structure</p>
-        <h2>Current status and significant project history serve different purposes.</h2>
+    <section class="container case-section">
+      <div class="case-section__intro case-section__intro--wide">
+        <p class="section-number">05. Governance Operating Model</p>
+        <h2>Current visibility, durable project history, and decision follow-up are deliberately separated.</h2>
       </div>
-      <div class="before-after">
-        <article><span>Working project board</span><p>Used for current project-level status, active work, blockers, immediate follow-up, and major items that need visibility now.</p></article>
-        <article><span>Structured project log</span><p>Used for significant events, decisions, people involved, issues or risks, actions taken, results, lessons, and the next review point.</p></article>
+      <div class="gov-structure">
+        <article>
+          <span class="gov-structure__index">01 / LIVE</span>
+          <h3>Working project board</h3>
+          <p>Holds current project status, active work, blockers, immediate follow-up, and major items that need visibility now.</p>
+        </article>
+        <article>
+          <span class="gov-structure__index">02 / HISTORY</span>
+          <h3>Structured project log</h3>
+          <p>Preserves significant events, decisions, people involved, issues or risks, actions taken, results, lessons, and the next review point.</p>
+        </article>
+        <article>
+          <span class="gov-structure__index">03 / ACTION</span>
+          <h3>Decision follow-up</h3>
+          <p>Keeps unresolved vendor, scope, payment, dependency, and execution decisions visible until the next action or milestone is confirmed.</p>
+        </article>
       </div>
     </section>
 
