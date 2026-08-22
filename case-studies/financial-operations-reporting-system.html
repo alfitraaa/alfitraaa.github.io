@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Operations &amp; Reporting System — Fariz Alfitra</title>
+  <meta name="description" content="A real-world financial operations and reporting case study covering admin input, validation, journal generation, period reporting, cash visibility, and management review." />
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..700&family=Public+Sans:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav__inner">
+      <a class="brand" href="../index.html">FARIZ ALFITRA</a>
+      <div class="nav-links">
+        <a href="../index.html#work">Selected Work</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="case-page">
+    <header class="container case-hero">
+      <a class="case-back" href="../index.html#work">← Back to selected work</a>
+      <div class="case-eyebrow" aria-label="Case study categories">
+        <span>Case study</span>
+        <span>Finance operations</span>
+        <span>Excel systems</span>
+        <span>Workflow design</span>
+      </div>
+      <h1>Financial Operations &amp; Reporting System</h1>
+      <p class="case-hero__lede">Designing a structured finance workflow that connects daily administrative input, validation, journal generation, period reporting, cash visibility, and management review.</p>
+      <div class="case-hero__meta">
+        <span>Role: Finance workflow &amp; reporting system design</span>
+        <span>Milestone: Workbook architecture completed</span>
+        <span>Status: Operational approval and handoff still in progress</span>
+      </div>
+    </header>
+
+    <section class="container case-metrics" aria-label="Verified project scale">
+      <article><strong>10</strong><span>workbook sheets in the integrated reporting file</span></article>
+      <article><strong>22</strong><span>fields in the administrative input layer</span></article>
+      <article><strong>15</strong><span>validation conditions across the workflow</span></article>
+      <article><strong>16</strong><span>fields in the structured journal layer</span></article>
+      <article><strong>5 → 10</strong><span>ready test records producing ten journal lines</span></article>
+    </section>
+
+    <section class="container case-section case-two-col">
+      <div class="case-section__intro">
+        <p class="section-number">01 — The Operational Problem</p>
+        <h2>Daily records existed, but input, validation, and reporting were not yet one connected workflow.</h2>
+      </div>
+      <div class="case-copy">
+        <p>The finance process needed to support routine administrative input while also producing information that could be reviewed consistently at management level.</p>
+        <p>The challenge was to connect data entry, completeness checks, account mapping, journal logic, period reporting, and cash visibility without making the workbook difficult for a non-technical user to maintain.</p>
+      </div>
+    </section>
+
+    <section class="container case-section">
+      <div class="case-section__intro case-section__intro--wide">
+        <p class="section-number">02 — Workflow Architecture</p>
+        <h2>The workbook is organized around a controlled path from transaction input to management review.</h2>
+      </div>
+      <div class="workflow-grid workflow-grid--seven">
+        <article><span>01</span><h3>Admin input</h3><p>Capture transaction details in a standardized 22-field entry layer.</p></article>
+        <article><span>02</span><h3>Validation</h3><p>Check completeness, identifiers, amount logic, and mapped categories.</p></article>
+        <article><span>03</span><h3>Account mapping</h3><p>Translate transaction categories into consistent debit and credit accounts.</p></article>
+        <article><span>04</span><h3>Journal generation</h3><p>Allow only records that pass validation to create structured journal lines.</p></article>
+        <article><span>05</span><h3>Period reporting</h3><p>Aggregate ready records into monthly reporting views.</p></article>
+        <article><span>06</span><h3>Cash visibility</h3><p>Roll opening cash, inflows, outflows, and ending cash forward by period.</p></article>
+        <article><span>07</span><h3>Management review</h3><p>Keep unresolved items visible instead of silently forcing them into reporting.</p></article>
+      </div>
+    </section>
+
+    <section class="container case-section">
+      <div class="case-section__head">
+        <div class="case-section__intro">
+          <p class="section-number">03 — Portfolio-Safe Demo</p>
+          <h2>A synthetic workflow shows how administrative input moves through validation and reporting.</h2>
+        </div>
+        <p>Every name, reference ID, transaction description, and amount below is fictional. The demonstration preserves the workflow design, not operational data.</p>
+      </div>
+
+      <div class="ops-demo" aria-label="Synthetic operational finance workflow">
+        <div class="ops-demo__header">
+          <div>
+            <strong>Admin Finance Input</strong>
+            <span>Synthetic records</span>
+          </div>
+          <div class="ops-demo__summary">
+            <span><b>5</b> Ready</span>
+            <span><b>1</b> Needs review</span>
+          </div>
+        </div>
+        <div class="ops-table" role="table" aria-label="Synthetic transaction input table">
+          <div class="ops-table__row ops-table__head" role="row">
+            <span>Ref</span><span>Description</span><span>Type</span><span>Category</span><span>Status</span>
+          </div>
+          <div class="ops-table__row" role="row"><span>RC-001</span><span>Monthly education receipts</span><span>Receipt</span><span>Education Revenue</span><span class="ops-status ops-status--ready">Ready</span></div>
+          <div class="ops-table__row" role="row"><span>PV-002</span><span>Electricity and water</span><span>Payment</span><span>Utilities</span><span class="ops-status ops-status--ready">Ready</span></div>
+          <div class="ops-table__row" role="row"><span>PV-003</span><span>Learning supplies</span><span>Payment</span><span>Supplies</span><span class="ops-status ops-status--ready">Ready</span></div>
+          <div class="ops-table__row" role="row"><span>—</span><span>Minor facility repair</span><span>Payment</span><span>Maintenance</span><span class="ops-status ops-status--review">Needs review</span></div>
+        </div>
+        <div class="ops-flow">
+          <span>Input</span><span>Validation</span><span>Mapping</span><span>Journal</span><span>Monthly report</span><span>Cash overview</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container case-section case-two-col">
+      <div class="case-section__intro">
+        <p class="section-number">04 — Validation Logic</p>
+        <h2>Validation status controls whether a record can flow into the journal.</h2>
+      </div>
+      <div class="case-copy">
+        <p>The workbook uses four workflow statuses and a broader validation framework of fifteen conditions. Seven checks are applied directly within the input workflow.</p>
+        <ul class="case-list">
+          <li><strong>Ready:</strong> the record is complete and can generate journal lines.</li>
+          <li><strong>Not started:</strong> the record exists but has not been completed.</li>
+          <li><strong>Needs completion:</strong> required information is still missing.</li>
+          <li><strong>Needs review:</strong> the record requires manual review before posting.</li>
+        </ul>
+        <p>A test snapshot showed five ready records producing ten balanced journal lines, while one record with a missing reference remained on hold.</p>
+      </div>
+    </section>
+
+    <section class="container case-section case-two-col">
+      <div class="case-section__intro">
+        <p class="section-number">05 — Before vs After</p>
+        <h2>The improvement is the connection between operational input and reviewable financial output.</h2>
+      </div>
+      <div class="before-after">
+        <article><span>Before</span><p>Daily finance records and reporting needs existed as separate operational activities, with more manual interpretation between input and management review.</p></article>
+        <article><span>After</span><p>A structured workflow connects input, validation, account mapping, journal logic, period reporting, cash roll-forward, and review status.</p></article>
+      </div>
+    </section>
+
+    <section class="container case-section case-two-col">
+      <div class="case-section__intro">
+        <p class="section-number">06 — Outcome &amp; Status</p>
+        <h2>The architecture is complete; operational adoption is the next milestone.</h2>
+      </div>
+      <div class="case-copy">
+        <p>The integrated workbook architecture and portfolio documentation are complete. The design demonstrates a maintainable route from routine finance administration to structured financial reporting.</p>
+        <p>Operational approval, user acceptance, final role attribution, and handoff remain outside the completed portfolio milestone and are not presented here as finished outcomes.</p>
+        <p class="case-note"><strong>Confidentiality:</strong> Public visuals and demonstration records use synthetic data only. Student, parent, staff, vendor, banking, and real transaction information are excluded.</p>
+      </div>
+    </section>
+
+    <section class="container case-cta">
+      <p class="eyebrow">Relevant capabilities</p>
+      <div class="case-capabilities" aria-label="Relevant capabilities">
+        <span>Financial operations</span>
+        <span>Excel systems</span>
+        <span>Workflow design</span>
+        <span>Validation logic</span>
+        <span>Journal automation</span>
+        <span>Management reporting</span>
+        <span>Process improvement</span>
+      </div>
+      <div class="hero__actions case-cta__actions">
+        <a class="btn btn--primary" href="../index.html#contact">Discuss a project</a>
+        <a class="btn btn--ghost" href="https://github.com/alfitraaa/alfitraaa.github.io/tree/main/case-studies" target="_blank" rel="noopener">View technical evidence ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__copy">© Fariz Alfitra</div>
+      <div class="site-footer__links"><a href="../index.html">Portfolio</a><a href="https://www.linkedin.com/in/farizalfitra/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/alfitraaa" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+  </footer>
+</body>
+</html>
