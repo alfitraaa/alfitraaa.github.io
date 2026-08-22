@@ -4,8 +4,14 @@
 
 	var toggle = document.querySelector(".nav-toggle");
 	var panel = document.getElementById("nav-mobile");
+
+	function closeMenu() {
+		if (!toggle || !panel) return;
+		panel.classList.remove("is-open");
+		toggle.setAttribute("aria-expanded", "false");
+	}
+
 	if (toggle && panel) {
-		function closeMenu() { panel.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); }
 		toggle.addEventListener("click", function () {
 			var open = toggle.getAttribute("aria-expanded") === "true";
 			panel.classList.toggle("is-open", !open);
@@ -98,12 +104,12 @@
 		contactStyle.textContent = [
 			".site-footer{scroll-margin-top:96px;position:relative;transition:background-color .4s ease,box-shadow .4s ease}",
 			".site-footer__links{align-items:center;isolation:isolate}",
-			".site-footer__links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:3px;white-space:nowrap;transform-origin:center bottom;will-change:transform;transition:transform .18s cubic-bezier(.22,1,.36,1),color .2s ease,opacity .25s ease,box-shadow .25s ease;position:relative;z-index:1}",
+			".site-footer__links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:3px;white-space:nowrap;transform-origin:center bottom;will-change:transform;transition:transform .18s cubic-bezier(.22,1,.36,1),color .2s ease,opacity .25s ease;position:relative;z-index:1}",
 			".site-footer.contact-focus{background:var(--surface-container-low);box-shadow:inset 0 3px 0 rgba(155,67,63,.62)}",
 			".site-footer.contact-focus:not(.contact-project) .site-footer__links a{transform:translateY(-4px) scale(1.07)}",
 			".site-footer.contact-project .site-footer__copy{color:var(--secondary)}",
 			".site-footer.contact-project .site-footer__links a{opacity:.38}",
-			".site-footer.contact-project .site-footer__links a[href^='mailto:'],.site-footer.contact-project .site-footer__links a[href*='wa.me']{opacity:1;color:var(--secondary);font-weight:700;transform:translateY(-7px) scale(1.18)!important;box-shadow:0 0 0 7px rgba(155,67,63,.08)}",
+			".site-footer.contact-project .site-footer__links a[href^='mailto:'],.site-footer.contact-project .site-footer__links a[href*='wa.me']{opacity:1;color:var(--secondary);font-weight:700;transform:translateY(-8px) scale(1.22)!important}",
 			".site-footer.contact-project .site-footer__links a[href^='mailto:']::after,.site-footer.contact-project .site-footer__links a[href*='wa.me']::after{content:'';position:absolute;left:50%;bottom:1px;width:4px;height:4px;border-radius:50%;background:var(--secondary);transform:translateX(-50%)}",
 			"@media(min-width:768px){.site-footer.contact-focus .site-footer__links{flex-wrap:nowrap}}",
 			"@media(prefers-reduced-motion:reduce){.site-footer,.site-footer__links a{transition:none!important}.site-footer.contact-focus .site-footer__links a{transform:none!important}}"
@@ -140,7 +146,7 @@
 		document.querySelectorAll('a[href="#contact"]').forEach(function (link) {
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
-				if (toggle && panel) closeMenu();
+				closeMenu();
 				window.history.replaceState(null, "", "#contact");
 				focusContact(false, true);
 			});
