@@ -98,4 +98,94 @@
 		linkTitle(p2, p2Href);
 		addScale(p2, "Verified structure: 10 sheets, 22 input fields, 15 validation conditions, a 16-field journal, and five ready test records producing ten journal lines.", p2Href);
 	}
+
+	/* Dynamic contact focus + macOS-style dock magnification. */
+	var footer = document.getElementById("contact");
+	var contactLinks = footer ? footer.querySelector(".site-footer__links") : null;
+	var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+	var contactTimer = null;
+
+	if (footer && contactLinks) {
+		var contactStyle = document.createElement("style");
+		contactStyle.textContent = [
+			".site-footer{scroll-margin-top:96px;transition:background-color .5s ease,border-color .5s ease}",
+			".site-footer__inner{transition:padding .55s cubic-bezier(.22,1,.36,1)}",
+			".site-footer__links{align-items:flex-end;isolation:isolate;transition:gap .55s cubic-bezier(.22,1,.36,1)}",
+			".site-footer__links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:3px;transform-origin:center bottom;will-change:transform;transition:transform .16s cubic-bezier(.22,1,.36,1),color .2s ease,opacity .2s ease;position:relative;z-index:1}",
+			".site-footer.contact-focus{background:var(--surface-container-low);border-top-color:rgba(155,67,63,.55)}",
+			".site-footer.contact-focus .site-footer__inner{padding-top:46px;padding-bottom:46px}",
+			".site-footer.contact-focus .site-footer__links{gap:12px 30px}",
+			".site-footer.contact-project .site-footer__links a[href^='mailto:'],.site-footer.contact-project .site-footer__links a[href*='wa.me']{color:var(--secondary);font-weight:700}",
+			".site-footer.contact-project .site-footer__links a[href^='mailto:']::after,.site-footer.contact-project .site-footer__links a[href*='wa.me']::after{content:'';position:absolute;left:50%;bottom:2px;width:3px;height:3px;border-radius:50%;background:var(--secondary);transform:translateX(-50%)}",
+			"@media(max-width:767px){.site-footer.contact-focus .site-footer__inner{padding-top:40px;padding-bottom:40px}.site-footer.contact-focus .site-footer__links{gap:10px 20px}.site-footer__links a{min-height:42px}}",
+			"@media(prefers-reduced-motion:reduce){.site-footer,.site-footer__inner,.site-footer__links,.site-footer__links a{transition:none!important}}"
+		].join("");
+		document.head.appendChild(contactStyle);
+
+		function resetDock() {
+			contactLinks.querySelectorAll("a").forEach(function (link) {
+				link.style.transform = "";
+				link.style.zIndex = "";
+			});
+		}
+
+		function focusContact(projectMode, shouldScroll) {
+			if (contactTimer) window.clearTimeout(contactTimer);
+			footer.classList.remove("contact-focus", "contact-project");
+			void footer.offsetWidth;
+			footer.classList.add("contact-focus");
+			if (projectMode) footer.classList.add("contact-project");
+
+			if (shouldScroll !== false) {
+				footer.scrollIntoView({
+					behavior: reducedMotion.matches ? "auto" : "smooth",
+					block: "end"
+				});
+			}
+
+			contactTimer = window.setTimeout(function () {
+				footer.classList.remove("contact-focus", "contact-project");
+				resetDock();
+			}, 3200);
+		}
+
+		document.querySelectorAll('a[href="#contact"]').forEach(function (link) {
+			link.addEventListener("click", function (event) {
+				event.preventDefault();
+				closeMenu();
+				window.history.replaceState(null, "", "#contact");
+				focusContact(false, true);
+			});
+		});
+
+		if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reducedMotion.matches) {
+			contactLinks.addEventListener("pointermove", function (event) {
+				contactLinks.querySelectorAll("a").forEach(function (link) {
+					var rect = link.getBoundingClientRect();
+					var center = rect.left + rect.width / 2;
+					var distance = Math.abs(event.clientX - center);
+					var influence = Math.max(0, 1 - distance / 135);
+					var scale = 1 + influence * 0.24;
+					var lift = influence * 8;
+					link.style.transform = "translateY(" + (-lift).toFixed(2) + "px) scale(" + scale.toFixed(3) + ")";
+					link.style.zIndex = String(1 + Math.round(influence * 10));
+				});
+			});
+			contactLinks.addEventListener("pointerleave", resetDock);
+		}
+
+		contactLinks.querySelectorAll("a").forEach(function (link) {
+			link.addEventListener("focus", function () {
+				if (!reducedMotion.matches) link.style.transform = "translateY(-5px) scale(1.14)";
+			});
+			link.addEventListener("blur", resetDock);
+		});
+
+		if (window.location.hash === "#contact") {
+			var fromCaseStudy = document.referrer.indexOf("/case-studies/") !== -1;
+			window.setTimeout(function () {
+				focusContact(fromCaseStudy, false);
+			}, 180);
+		}
+	}
 })();
