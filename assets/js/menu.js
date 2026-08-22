@@ -1,6 +1,4 @@
-/*
-	Portfolio v1 — mobile menu toggle + selected case-study enhancement.
-*/
+/* Portfolio interactions and selected case-study previews. */
 (function () {
 	"use strict";
 
@@ -8,144 +6,95 @@
 	var panel = document.getElementById("nav-mobile");
 
 	if (toggle && panel) {
-		function openMenu() {
-			panel.classList.add("is-open");
-			toggle.setAttribute("aria-expanded", "true");
-		}
-
 		function closeMenu() {
 			panel.classList.remove("is-open");
 			toggle.setAttribute("aria-expanded", "false");
 		}
-
-		function isOpen() {
-			return toggle.getAttribute("aria-expanded") === "true";
-		}
-
 		toggle.addEventListener("click", function () {
-			if (isOpen()) {
-				closeMenu();
-			} else {
-				openMenu();
-			}
+			var open = toggle.getAttribute("aria-expanded") === "true";
+			panel.classList.toggle("is-open", !open);
+			toggle.setAttribute("aria-expanded", String(!open));
 		});
-
 		panel.addEventListener("click", function (event) {
-			if (event.target.closest("a")) {
-				closeMenu();
-			}
+			if (event.target.closest("a")) closeMenu();
 		});
-
 		document.addEventListener("keydown", function (event) {
-			if (event.key === "Escape" && isOpen()) {
-				closeMenu();
-				toggle.focus();
-			}
+			if (event.key === "Escape") closeMenu();
 		});
-
-		var desktop = window.matchMedia("(min-width: 768px)");
-		desktop.addEventListener("change", function (event) {
-			if (event.matches) {
-				closeMenu();
-			}
+		window.matchMedia("(min-width: 768px)").addEventListener("change", function (event) {
+			if (event.matches) closeMenu();
 		});
 	}
 
-	function linkCase(caseEl, href, ariaLabel) {
+	if (!document.querySelector('link[href="assets/css/case-study.css"]')) {
+		var caseStyles = document.createElement("link");
+		caseStyles.rel = "stylesheet";
+		caseStyles.href = "assets/css/case-study.css";
+		document.head.appendChild(caseStyles);
+	}
+
+	function linkTitle(caseEl, href) {
 		var title = caseEl.querySelector(".case__body h3");
-		var figure = caseEl.querySelector(".case__figure");
-
 		if (title && !title.querySelector("a")) {
-			var titleLink = document.createElement("a");
-			titleLink.href = href;
-			titleLink.textContent = title.textContent;
+			var link = document.createElement("a");
+			link.href = href;
+			link.textContent = title.textContent;
 			title.textContent = "";
-			title.appendChild(titleLink);
-		}
-
-		if (figure && !figure.querySelector(":scope > a")) {
-			var figureLink = document.createElement("a");
-			figureLink.href = href;
-			figureLink.setAttribute("aria-label", ariaLabel);
-			while (figure.firstChild) {
-				figureLink.appendChild(figure.firstChild);
-			}
-			figure.appendChild(figureLink);
+			title.appendChild(link);
 		}
 	}
 
-	function appendScaleAndLink(caseEl, scaleText, href) {
+	function setFigure(caseEl, href, label, html) {
+		var figure = caseEl.querySelector(".case__figure");
+		if (!figure) return;
+		figure.innerHTML = '<a href="' + href + '" aria-label="' + label + '" style="display:block;color:inherit;text-decoration:none">' + html + '</a>';
+	}
+
+	function addScale(caseEl, text, href) {
 		var body = caseEl.querySelector(".case__body");
 		if (!body) return;
-
 		var tags = body.querySelector(".case__tags");
-		var oldScale = body.querySelector(".case-scale");
-		if (!oldScale) {
+		if (!body.querySelector(".case-scale")) {
 			var scale = document.createElement("p");
 			scale.className = "muted case-scale";
-			scale.textContent = scaleText;
-			if (tags) body.insertBefore(scale, tags);
-			else body.appendChild(scale);
+			scale.textContent = text;
+			if (tags) body.insertBefore(scale, tags); else body.appendChild(scale);
 		}
-
 		if (!body.querySelector(".case-more-link")) {
 			var more = document.createElement("a");
 			more.className = "case-more-link";
 			more.href = href;
 			more.textContent = "View full case study →";
-			more.style.display = "inline-block";
-			more.style.marginTop = "20px";
-			more.style.fontFamily = "var(--font-sans)";
-			more.style.fontSize = "12px";
-			more.style.fontWeight = "700";
-			more.style.letterSpacing = ".04em";
-			more.style.color = "var(--secondary)";
+			more.style.cssText = "display:inline-block;margin-top:20px;font-family:var(--font-sans);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--secondary)";
 			body.appendChild(more);
 		}
 	}
 
 	var cases = document.querySelectorAll("#work .case");
 
-	if (cases.length > 0) {
-		var flagship = cases[0];
-		var flagshipHref = "case-studies/financial-reporting-transformation.html";
-		linkCase(flagship, flagshipHref, "View Financial Reporting Transformation case study");
-		appendScaleAndLink(
-			flagship,
-			"Verified scale: 36 source workbooks, 34 periods reconstructed, 4,600+ transaction groups, and 12/12 migration checks passed.",
-			flagshipHref
-		);
+	if (cases[0]) {
+		var p1 = cases[0];
+		var p1Href = "case-studies/financial-reporting-transformation.html";
+		var p1Visual = '<div class="demo-dashboard" role="img" aria-label="Synthetic management reporting dashboard"><div class="demo-dashboard__title">Management Reporting Dashboard <span>Synthetic Data</span></div><div class="demo-kpis"><article><span>Total Receipts</span><strong>72.95M</strong></article><article><span>Total Payments</span><strong>49.32M</strong></article><article><span>Net Cash Movement</span><strong>23.64M</strong></article><article><span>Items for Review</span><strong>2</strong></article></div><div class="demo-panels"><div class="demo-panel"><h3>Monthly movement</h3><div class="bar-row"><span>Jan</span><i style="--w:74%"></i><b>5.38M</b></div><div class="bar-row"><span>Feb</span><i style="--w:67%"></i><b>4.85M</b></div><div class="bar-row"><span>Mar</span><i style="--w:100%"></i><b>7.23M</b></div><div class="bar-row"><span>Apr</span><i style="--w:86%"></i><b>6.19M</b></div></div><div class="demo-panel"><h3>Validation status</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Ready</span><strong>22</strong></div><div class="status-row"><span class="status-dot status-dot--review"></span><span>Review</span><strong>2</strong></div><hr><h3>Reconciliation</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Passed periods</span><strong>4</strong></div></div></div></div>';
+		setFigure(p1, p1Href, "View Financial Reporting Transformation case study", p1Visual);
+		linkTitle(p1, p1Href);
+		addScale(p1, "Verified scale: 36 source workbooks, 34 periods reconstructed, 4,600+ transaction groups, and 12/12 migration checks passed.", p1Href);
 	}
 
-	if (cases.length > 1) {
-		var operations = cases[1];
-		var operationsHref = "case-studies/financial-operations-reporting-system.html";
-		var title = operations.querySelector(".case__body h3");
-		var paragraphs = operations.querySelectorAll(".case__body p");
-		var tags = operations.querySelector(".case__tags");
-		var figure = operations.querySelector(".case__figure");
-
+	if (cases[1]) {
+		var p2 = cases[1];
+		var p2Href = "case-studies/financial-operations-reporting-system.html";
+		var title = p2.querySelector(".case__body h3");
+		var paragraphs = p2.querySelectorAll(".case__body p");
+		var tags = p2.querySelector(".case__tags");
 		if (title) title.textContent = "Financial Operations & Reporting System";
-		if (paragraphs.length > 0) {
-			paragraphs[0].innerHTML = "<strong>Problem:</strong> Daily finance administration, validation, journal logic, and management reporting needed to operate as one connected workflow rather than separate activities.";
-		}
-		if (paragraphs.length > 1) {
-			paragraphs[1].innerHTML = "<strong>Role:</strong> Structured the workbook architecture, validation statuses, account mapping, journal generation, period reporting, and cash-visibility workflow for an education organization.";
-		}
+		if (paragraphs[0]) paragraphs[0].innerHTML = "<strong>Problem:</strong> Daily finance administration, validation, journal logic, and management reporting needed to operate as one connected workflow rather than separate activities.";
+		if (paragraphs[1]) paragraphs[1].innerHTML = "<strong>Role:</strong> Structured the workbook architecture, validation statuses, account mapping, journal generation, period reporting, and cash-visibility workflow for an education organization.";
+		if (tags) tags.innerHTML = '<span class="tag">Finance Operations</span><span class="tag">Excel Systems</span><span class="tag">Process Improvement</span>';
 
-		if (tags) {
-			tags.innerHTML = '<span class="tag">Finance Operations</span><span class="tag">Excel Systems</span><span class="tag">Process Improvement</span>';
-		}
-
-		if (figure) {
-			figure.innerHTML = '<div class="schematic" role="img" aria-label="Operational finance workflow from admin input through management reporting"><svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><rect class="schematic__hair" x="20" y="34" width="280" height="66"/><line class="schematic__hair" x1="20" y1="58" x2="300" y2="58"/><line class="schematic__hair" x1="88" y1="34" x2="88" y2="100"/><line class="schematic__hair" x1="216" y1="34" x2="216" y2="100"/><rect class="schematic__fill-soft" x="28" y="68" width="50" height="18"/><rect class="schematic__fill-soft" x="98" y="68" width="108" height="18"/><rect class="schematic__accent" x="228" y="68" width="58" height="18"/><line class="schematic__stroke" x1="34" y1="160" x2="286" y2="160"/><circle class="schematic__node" cx="34" cy="160" r="9"/><circle class="schematic__node" cx="84" cy="160" r="9"/><circle class="schematic__node" cx="134" cy="160" r="9"/><circle class="schematic__node" cx="184" cy="160" r="9"/><circle class="schematic__node" cx="234" cy="160" r="9"/><circle class="schematic__accent" cx="286" cy="160" r="9"/><line class="schematic__hair" x1="34" y1="184" x2="34" y2="202"/><line class="schematic__hair" x1="84" y1="184" x2="84" y2="202"/><line class="schematic__hair" x1="134" y1="184" x2="134" y2="202"/><line class="schematic__hair" x1="184" y1="184" x2="184" y2="202"/><line class="schematic__hair" x1="234" y1="184" x2="234" y2="202"/><line class="schematic__accent" x1="286" y1="184" x2="286" y2="202"/></svg></div>';
-		}
-
-		linkCase(operations, operationsHref, "View Financial Operations and Reporting System case study");
-		appendScaleAndLink(
-			operations,
-			"Verified structure: 10 sheets, 22 input fields, 15 validation conditions, a 16-field journal, and five ready test records producing ten journal lines.",
-			operationsHref
-		);
+		var p2Visual = '<div class="ops-demo" aria-label="Synthetic operational finance workflow"><div class="ops-demo__header"><div><strong>Admin Finance Input</strong><span>Synthetic records</span></div><div class="ops-demo__summary"><span><b>5</b> Ready</span><span><b>1</b> Needs review</span></div></div><div class="ops-table" role="table"><div class="ops-table__row ops-table__head" role="row"><span>Ref</span><span>Description</span><span>Type</span><span>Category</span><span>Status</span></div><div class="ops-table__row" role="row"><span>RC-001</span><span>Monthly education receipts</span><span>Receipt</span><span>Education Revenue</span><span class="ops-status ops-status--ready">Ready</span></div><div class="ops-table__row" role="row"><span>PV-002</span><span>Electricity and water</span><span>Payment</span><span>Utilities</span><span class="ops-status ops-status--ready">Ready</span></div><div class="ops-table__row" role="row"><span>PV-003</span><span>Learning supplies</span><span>Payment</span><span>Supplies</span><span class="ops-status ops-status--ready">Ready</span></div><div class="ops-table__row" role="row"><span>—</span><span>Minor facility repair</span><span>Payment</span><span>Maintenance</span><span class="ops-status ops-status--review">Needs review</span></div></div><div class="ops-flow"><span>Input</span><span>Validation</span><span>Mapping</span><span>Journal</span><span>Monthly report</span><span>Cash overview</span></div></div>';
+		setFigure(p2, p2Href, "View Financial Operations and Reporting System case study", p2Visual);
+		linkTitle(p2, p2Href);
+		addScale(p2, "Verified structure: 10 sheets, 22 input fields, 15 validation conditions, a 16-field journal, and five ready test records producing ten journal lines.", p2Href);
 	}
 })();
