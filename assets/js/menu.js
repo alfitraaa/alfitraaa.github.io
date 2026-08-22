@@ -5,24 +5,15 @@
 	var toggle = document.querySelector(".nav-toggle");
 	var panel = document.getElementById("nav-mobile");
 	if (toggle && panel) {
-		function closeMenu() {
-			panel.classList.remove("is-open");
-			toggle.setAttribute("aria-expanded", "false");
-		}
+		function closeMenu() { panel.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); }
 		toggle.addEventListener("click", function () {
 			var open = toggle.getAttribute("aria-expanded") === "true";
 			panel.classList.toggle("is-open", !open);
 			toggle.setAttribute("aria-expanded", String(!open));
 		});
-		panel.addEventListener("click", function (event) {
-			if (event.target.closest("a")) closeMenu();
-		});
-		document.addEventListener("keydown", function (event) {
-			if (event.key === "Escape") closeMenu();
-		});
-		window.matchMedia("(min-width: 768px)").addEventListener("change", function (event) {
-			if (event.matches) closeMenu();
-		});
+		panel.addEventListener("click", function (event) { if (event.target.closest("a")) closeMenu(); });
+		document.addEventListener("keydown", function (event) { if (event.key === "Escape") closeMenu(); });
+		window.matchMedia("(min-width: 768px)").addEventListener("change", function (event) { if (event.matches) closeMenu(); });
 	}
 
 	if (!document.querySelector('link[href="assets/css/case-study.css"]')) {
@@ -45,9 +36,7 @@
 
 	function setFigure(caseEl, href, label, html) {
 		var figure = caseEl.querySelector(".case__figure");
-		if (figure) {
-			figure.innerHTML = '<a href="' + href + '" aria-label="' + label + '" style="display:block;color:inherit;text-decoration:none">' + html + '</a>';
-		}
+		if (figure) figure.innerHTML = '<a href="' + href + '" aria-label="' + label + '" style="display:block;color:inherit;text-decoration:none">' + html + '</a>';
 	}
 
 	function addScale(caseEl, text, href) {
@@ -58,8 +47,7 @@
 			var scale = document.createElement("p");
 			scale.className = "muted case-scale";
 			scale.textContent = text;
-			if (tags) body.insertBefore(scale, tags);
-			else body.appendChild(scale);
+			if (tags) body.insertBefore(scale, tags); else body.appendChild(scale);
 		}
 		if (!body.querySelector(".case-more-link")) {
 			var more = document.createElement("a");
@@ -76,7 +64,7 @@
 	if (cases[0]) {
 		var p1 = cases[0];
 		var p1Href = "case-studies/financial-reporting-transformation.html";
-		var p1Visual = '<div class="demo-dashboard" role="img" aria-label="Synthetic management reporting dashboard"><div class="demo-dashboard__title">Management Reporting Dashboard <span>Synthetic Data</span></div><div class="demo-kpis"><article style="display:flex;flex-direction:column;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Total Receipts</span><strong style="display:block;margin-top:12px">72.95M</strong></article><article style="display:flex;flex-direction:column;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Total Payments</span><strong style="display:block;margin-top:12px">49.32M</strong></article><article style="display:flex;flex-direction:column;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Net Cash Movement</span><strong style="display:block;margin-top:12px">23.64M</strong></article><article style="display:flex;flex-direction:column;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Items for Review</span><strong style="display:block;margin-top:12px">2</strong></article></div><div class="demo-panels"><div class="demo-panel"><h3>Monthly movement</h3><div class="bar-row"><span>Jan</span><i style="--w:74%"></i><b>5.38M</b></div><div class="bar-row"><span>Feb</span><i style="--w:67%"></i><b>4.85M</b></div><div class="bar-row"><span>Mar</span><i style="--w:100%"></i><b>7.23M</b></div><div class="bar-row"><span>Apr</span><i style="--w:86%"></i><b>6.19M</b></div></div><div class="demo-panel"><h3>Validation status</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Ready</span><strong>22</strong></div><div class="status-row"><span class="status-dot status-dot--review"></span><span>Review</span><strong>2</strong></div><hr><h3>Reconciliation</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Passed periods</span><strong>4</strong></div></div></div></div>';
+		var p1Visual = '<div class="demo-dashboard" role="img" aria-label="Synthetic management reporting dashboard"><div class="demo-dashboard__title">Management Reporting Dashboard <span>Synthetic Data</span></div><div class="demo-kpis"><article style="display:flex;flex-direction:column;justify-content:space-between;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Total Receipts</span><strong style="display:block;margin-top:12px">72.95M</strong></article><article style="display:flex;flex-direction:column;justify-content:space-between;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Total Payments</span><strong style="display:block;margin-top:12px">49.32M</strong></article><article style="display:flex;flex-direction:column;justify-content:space-between;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Net Cash Movement</span><strong style="display:block;margin-top:12px">23.64M</strong></article><article style="display:flex;flex-direction:column;justify-content:space-between;min-height:96px"><span style="display:block;min-height:32px;line-height:1.25">Items for Review</span><strong style="display:block;margin-top:12px">2</strong></article></div><div class="demo-panels"><div class="demo-panel"><h3>Monthly movement</h3><div class="bar-row"><span>Jan</span><i style="--w:74%"></i><b>5.38M</b></div><div class="bar-row"><span>Feb</span><i style="--w:67%"></i><b>4.85M</b></div><div class="bar-row"><span>Mar</span><i style="--w:100%"></i><b>7.23M</b></div><div class="bar-row"><span>Apr</span><i style="--w:86%"></i><b>6.19M</b></div></div><div class="demo-panel"><h3>Validation status</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Ready</span><strong>22</strong></div><div class="status-row"><span class="status-dot status-dot--review"></span><span>Review</span><strong>2</strong></div><hr><h3>Reconciliation</h3><div class="status-row"><span class="status-dot status-dot--ok"></span><span>Passed periods</span><strong>4</strong></div></div></div></div>';
 		setFigure(p1, p1Href, "View Financial Reporting Transformation case study", p1Visual);
 		linkTitle(p1, p1Href);
 		addScale(p1, "Verified scale: 36 source workbooks, 34 periods reconstructed, 4,600+ transaction groups, and 12/12 migration checks passed.", p1Href);
@@ -99,7 +87,7 @@
 		addScale(p2, "Verified structure: 10 sheets, 22 input fields, 15 validation conditions, a 16-field journal, and five ready test records producing ten journal lines.", p2Href);
 	}
 
-	/* Dynamic contact focus + macOS-style dock magnification. */
+	/* Contact focus + subtle macOS-style dock magnification. */
 	var footer = document.getElementById("contact");
 	var contactLinks = footer ? footer.querySelector(".site-footer__links") : null;
 	var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -108,17 +96,17 @@
 	if (footer && contactLinks) {
 		var contactStyle = document.createElement("style");
 		contactStyle.textContent = [
-			".site-footer{scroll-margin-top:96px;transition:background-color .5s ease,border-color .5s ease}",
-			".site-footer__inner{transition:padding .55s cubic-bezier(.22,1,.36,1)}",
-			".site-footer__links{align-items:flex-end;isolation:isolate;transition:gap .55s cubic-bezier(.22,1,.36,1)}",
-			".site-footer__links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:3px;transform-origin:center bottom;will-change:transform;transition:transform .16s cubic-bezier(.22,1,.36,1),color .2s ease,opacity .2s ease;position:relative;z-index:1}",
-			".site-footer.contact-focus{background:var(--surface-container-low);border-top-color:rgba(155,67,63,.55)}",
-			".site-footer.contact-focus .site-footer__inner{padding-top:46px;padding-bottom:46px}",
-			".site-footer.contact-focus .site-footer__links{gap:12px 30px}",
-			".site-footer.contact-project .site-footer__links a[href^='mailto:'],.site-footer.contact-project .site-footer__links a[href*='wa.me']{color:var(--secondary);font-weight:700}",
-			".site-footer.contact-project .site-footer__links a[href^='mailto:']::after,.site-footer.contact-project .site-footer__links a[href*='wa.me']::after{content:'';position:absolute;left:50%;bottom:2px;width:3px;height:3px;border-radius:50%;background:var(--secondary);transform:translateX(-50%)}",
-			"@media(max-width:767px){.site-footer.contact-focus .site-footer__inner{padding-top:40px;padding-bottom:40px}.site-footer.contact-focus .site-footer__links{gap:10px 20px}.site-footer__links a{min-height:42px}}",
-			"@media(prefers-reduced-motion:reduce){.site-footer,.site-footer__inner,.site-footer__links,.site-footer__links a{transition:none!important}}"
+			".site-footer{scroll-margin-top:96px;position:relative;transition:background-color .4s ease,box-shadow .4s ease}",
+			".site-footer__links{align-items:center;isolation:isolate}",
+			".site-footer__links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:3px;white-space:nowrap;transform-origin:center bottom;will-change:transform;transition:transform .18s cubic-bezier(.22,1,.36,1),color .2s ease,opacity .25s ease,box-shadow .25s ease;position:relative;z-index:1}",
+			".site-footer.contact-focus{background:var(--surface-container-low);box-shadow:inset 0 3px 0 rgba(155,67,63,.62)}",
+			".site-footer.contact-focus:not(.contact-project) .site-footer__links a{transform:translateY(-4px) scale(1.07)}",
+			".site-footer.contact-project .site-footer__copy{color:var(--secondary)}",
+			".site-footer.contact-project .site-footer__links a{opacity:.38}",
+			".site-footer.contact-project .site-footer__links a[href^='mailto:'],.site-footer.contact-project .site-footer__links a[href*='wa.me']{opacity:1;color:var(--secondary);font-weight:700;transform:translateY(-7px) scale(1.18)!important;box-shadow:0 0 0 7px rgba(155,67,63,.08)}",
+			".site-footer.contact-project .site-footer__links a[href^='mailto:']::after,.site-footer.contact-project .site-footer__links a[href*='wa.me']::after{content:'';position:absolute;left:50%;bottom:1px;width:4px;height:4px;border-radius:50%;background:var(--secondary);transform:translateX(-50%)}",
+			"@media(min-width:768px){.site-footer.contact-focus .site-footer__links{flex-wrap:nowrap}}",
+			"@media(prefers-reduced-motion:reduce){.site-footer,.site-footer__links a{transition:none!important}.site-footer.contact-focus .site-footer__links a{transform:none!important}}"
 		].join("");
 		document.head.appendChild(contactStyle);
 
@@ -146,13 +134,13 @@
 			contactTimer = window.setTimeout(function () {
 				footer.classList.remove("contact-focus", "contact-project");
 				resetDock();
-			}, 3200);
+			}, 3600);
 		}
 
 		document.querySelectorAll('a[href="#contact"]').forEach(function (link) {
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
-				closeMenu();
+				if (toggle && panel) closeMenu();
 				window.history.replaceState(null, "", "#contact");
 				focusContact(false, true);
 			});
@@ -160,6 +148,7 @@
 
 		if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reducedMotion.matches) {
 			contactLinks.addEventListener("pointermove", function (event) {
+				if (footer.classList.contains("contact-project")) return;
 				contactLinks.querySelectorAll("a").forEach(function (link) {
 					var rect = link.getBoundingClientRect();
 					var center = rect.left + rect.width / 2;
@@ -176,7 +165,9 @@
 
 		contactLinks.querySelectorAll("a").forEach(function (link) {
 			link.addEventListener("focus", function () {
-				if (!reducedMotion.matches) link.style.transform = "translateY(-5px) scale(1.14)";
+				if (!reducedMotion.matches && !footer.classList.contains("contact-project")) {
+					link.style.transform = "translateY(-5px) scale(1.14)";
+				}
 			});
 			link.addEventListener("blur", resetDock);
 		});
@@ -188,4 +179,5 @@
 			}, 180);
 		}
 	}
+
 })();
