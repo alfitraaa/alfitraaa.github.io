@@ -962,12 +962,6 @@ main {
 	margin-top: 32px;
 }
 
-.wwm__note {
-	margin-top: 20px;
-	font-size: 14px;
-	color: var(--on-surface-variant);
-}
-
 .wwm__steps {
 	margin-top: 0;
 }
