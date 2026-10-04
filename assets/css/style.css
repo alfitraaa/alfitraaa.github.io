@@ -940,6 +940,99 @@ main {
 	}
 }
 
+/* ---------- Work With Me (06) --------------------------------------------- */
+.wwm__lead,
+.wwm__detail {
+	grid-column: 1 / -1;
+}
+
+.wwm__title {
+	margin-bottom: 24px;
+}
+
+.wwm__lead .muted {
+	max-width: 30rem;
+}
+
+.wwm__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: center;
+	margin-top: 32px;
+}
+
+.wwm__note {
+	margin-top: 20px;
+	font-size: 14px;
+	color: var(--on-surface-variant);
+}
+
+.wwm__steps {
+	margin-top: 0;
+}
+
+.wwm__offer {
+	margin-top: 40px;
+	padding: 32px;
+	background: var(--surface-container-low);
+	border: 0.5px solid rgba(196, 199, 199, 0.6);
+	border-top: 2px solid var(--secondary);
+}
+
+.wwm__offer-label {
+	color: var(--secondary);
+	margin-bottom: 16px;
+}
+
+.wwm__price {
+	font-family: var(--font-serif);
+	font-size: 36px;
+	font-weight: 500;
+	line-height: 1.2;
+	color: var(--on-surface);
+	margin-bottom: 12px;
+}
+
+.wwm__offer-desc {
+	font-size: 16px;
+	color: var(--on-surface-variant);
+	max-width: 32rem;
+}
+
+.wwm__credit {
+	margin-top: 24px;
+	font-size: 14px;
+	color: var(--on-surface-variant);
+}
+
+.wwm__credit a {
+	color: var(--on-surface);
+	border-bottom: 0.5px solid var(--outline);
+	transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.wwm__credit a:hover,
+.wwm__credit a:focus-visible {
+	color: var(--secondary);
+	border-color: var(--secondary);
+}
+
+@media (min-width: 768px) {
+	.wwm__lead {
+		grid-column: span 5;
+	}
+
+	.wwm__title {
+		font-size: 40px;
+		line-height: 1.2;
+	}
+
+	.wwm__detail {
+		grid-column: 7 / span 6;
+	}
+}
+
 /* ---------- Footer -------------------------------------------------------- */
 .site-footer {
 	border-top: 1px solid rgba(196, 199, 199, 0.5);
