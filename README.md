@@ -1,8 +1,8 @@
 # Fariz Alfitra — Portfolio
 
-Personal portfolio focused on Finance, Governance & Business Systems.
+Personal portfolio focused on Finance, Operations & Business Systems.
 
-Building practical systems for clearer financial visibility, stronger governance, and better project and operational decisions.
+Building practical systems for clearer financial visibility, stronger operations, and better business decisions.
 
 ## Focus
 
