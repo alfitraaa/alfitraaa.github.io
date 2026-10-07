@@ -1,4 +1,4 @@
-# Fariz Alfitra — Portfolio
+# Fariz Alfitra | Portfolio
 
 Personal portfolio focused on Finance, Operations & Business Systems.
 
